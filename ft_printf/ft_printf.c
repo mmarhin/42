@@ -12,7 +12,36 @@
 
 #include "ft_printf.h"
 
-int	main(void)
+int	ft_printf(const char *format, ...)
 {
-	printf("Hola Mundo");
+	int	count;
+
+	count = 0;
+	va_list args;
+	va_start(args, format);
+
+	while(*format)
+	{
+		if (*format == '%' && *(format + 1))
+		{
+			if (*format == 'c')
+			
+			else if (*format == 's')
+
+			else if (*format == 'p')
+
+			else if (*format == 'd')
+
+			else if (*format == 'i')
+
+			else if (*format == 'u')
+
+			else if (*format == 'x')
+
+			else if (*format == 'X')
+		}
+	}
+	else
+
+	va_end(args);
 }

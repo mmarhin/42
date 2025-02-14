@@ -6,8 +6,17 @@
 /*   By: mamarin- <mamarin-@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 17:25:33 by mamarin-          #+#    #+#             */
-/*   Updated: 2024/12/28 17:26:15 by mamarin-         ###   ########.fr       */
+/*   Updated: 2025/02/14 18:55:14 by mamarin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#ifndef FT_PRINTF_H
+#define FT_PRINTF_H
+
+#include <stdlib.h>
+#include <unistd.h>
+#include <stdarg.h>
+
+int	ft_printf(const char *format, ...);
+
+#endif
