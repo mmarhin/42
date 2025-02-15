@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamarin- <mamarin-@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: mamarin- <mamarin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 17:25:48 by mamarin-          #+#    #+#             */
-/*   Updated: 2025/02/15 10:27:20 by mamarin-         ###   ########.fr       */
+/*   Updated: 2025/02/15 13:22:40 by mamarin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+
+static int printf_type(const char *format, va_list args)
+{
+	int count;
+
+	count = 0;
+	if (*format == 'c')
+		count += print_char(va_arg(args, int));
+	return (count);
+}
+
 
 int	ft_printf(const char *format, ...)
 {
@@ -19,35 +31,25 @@ int	ft_printf(const char *format, ...)
 	count = 0;
 	va_list args;
 	va_start(args, format);
-
-	while(*format)
+	while (*format)
 	{
-		if (*format == '%' && *(format + 1))
+		if (ft_strchr("cspdiuxX", *(format + 1)) && *format == '%')
 		{
 			format++;
-			if (*format == 'c')
-							
-			else if (*format == 's')
-
-			else if (*format == 'p')
-
-			else if (*format == 'd')
-
-			else if (*format == 'i')
-
-			else if (*format == 'u')
-
-			else if (*format == 'x')
-
-			else if (*format == 'X')
+			count += printf_type(format, args);
 		}
-	}
-	else
-	{
-		write(1,*format,1);
-		format++;
-		count++;
+		else
+		{
+			count += print_char(*format);
+			format++;
+		}
 	}
 	va_end(args);
 	return (count);
+}
+
+int main()
+{
+	int count = ft_printf("Hola%dADIOS", 0);
+	ft_printf("%d", count);
 }

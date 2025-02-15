@@ -3,7 +3,7 @@ NAME = libftprintf.a
 CC = gcc 
 CFLAGS = -Wall -Wextra -Werror
 
-SRC = ft_printf.c  
+SRC = ft_printf.c print_char.c 
 OBJ = $(SRC:.c=.o)
 
 LIBFT_DIR = libft
@@ -14,7 +14,8 @@ all : $(NAME)
 $(NAME): $(OBJ)
 	@$(MAKE) -C $(LIBFT_DIR)
 	@cp $(LIBFT) .
-	@ar rcs $(NAME) $(OBJ) libft.a
+	@ar rcs $(NAME) $(OBJ) 
+	@ar rcs $(NAME) libft.a
 	@echo "LIBRERÍA $(NAME) CREADA"
 
 %.o: %.c
