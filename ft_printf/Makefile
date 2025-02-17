@@ -3,7 +3,7 @@ NAME = libftprintf.a
 CC = gcc 
 CFLAGS = -Wall -Wextra -Werror
 
-SRC = ft_printf.c print_char.c 
+SRC = ft_printf.c print_char.c print_string.c
 OBJ = $(SRC:.c=.o)
 
 LIBFT_DIR = libft
@@ -11,24 +11,24 @@ LIBFT = $(LIBFT_DIR)/libft.a
 
 all : $(NAME)
 
-$(NAME): $(OBJ)
-	@$(MAKE) -C $(LIBFT_DIR)
+$(NAME): $(OBJ) 
+	@make -C $(LIBFT_DIR)
 	@cp $(LIBFT) .
-	@ar rcs $(NAME) $(OBJ) 
-	@ar rcs $(NAME) libft.a
+	@mv libft.a $(NAME)
+	@ar rcs $(NAME) $(OBJ)
 	@echo "LIBRERÍA $(NAME) CREADA"
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c -o $@ $<
+	$(CC) $(CFLAGS) -I$(LIBFT_DIR) -c -o $@ $<
 
 clean :
 	@rm -rf $(OBJ)
-	@$(MAKE) clean -C $(LIBFT_DIR)
+	@make clean -C $(LIBFT_DIR)
 	@echo "Archivos objeto eliminados"
 
 fclean : clean 
 	@rm -rf $(NAME) libft.a
-	@$(MAKE) fclean -C $(LIBFT_DIR)
+	@make fclean -C $(LIBFT_DIR)
 	@echo "LIBRERÍA $(NAME) HA SIDO LIMPIADA COMPLETAMENTE"
  
 re : fclean all
