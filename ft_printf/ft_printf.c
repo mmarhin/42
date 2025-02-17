@@ -6,7 +6,7 @@
 /*   By: mamarin- <mamarin-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 17:25:48 by mamarin-          #+#    #+#             */
-/*   Updated: 2025/02/17 19:15:35 by mamarin-         ###   ########.fr       */
+/*   Updated: 2025/02/17 19:49:53 by mamarin-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static int	printf_type(const char *format, va_list args)
 		count += print_string(va_arg(args, char *));
 	else if (*format == 'p')
 		count += print_pointer(va_arg(args, void *));
+	else if (*format == 'd')
+		count += print_decimal(va_arg(args, int));
 	else if (*format == '%')
 		count += print_char('%');
 	return (count);
